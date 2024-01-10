@@ -3,8 +3,6 @@
 typedef struct{
     uint16_t cx;
     uint16_t cy;
-    uint16_t speed;
-    uint16_t resolution;
 }person_struct;
 
 typedef struct{

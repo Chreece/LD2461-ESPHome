@@ -19,7 +19,6 @@ void LD2461::setup() {
 }
 
 void LD2461::update() {
-    report_position();
 
 #ifdef USE_TEXT_SENSOR
     if (this->uuid_text_sensor_ != nullptr && this->uuid_text_sensor_->state != this->uuid_) {
@@ -70,6 +69,83 @@ void LD2450::loop() {
                                 this->uuid_ = str_snprintf("%02x%02x%02x%02x", 17, response_buffer[4], 
                                     response_buffer[5], response_buffer[6], response_buffer[7]).c_str();
                                 break;
+                                
+#ifdef USE_SENSOR
+                            case GET_COORDINATES:
+                                for(int i=0; i<5; i++) {
+                                    if(person[i].x != 0 && person[i].y != 0) {
+                                        person_before[i].x = person[i].x;
+                                        person_before[i].y = person[i].y;
+                                    }
+                                }
+
+                                PERSON_PUBLISH(position_x, 0, person[0].x);
+                                PERSON_PUBLISH(position_y, 0, person[0].y);
+
+                                PERSON_PUBLISH(position_x, 1, person[1].x);
+                                PERSON_PUBLISH(position_y, 1, person[1].y);
+
+                                PERSON_PUBLISH(position_x, 2, person[2].x);
+                                PERSON_PUBLISH(position_y, 2, person[2].y);
+
+                                PERSON_PUBLISH(position_x, 3, person[3].x);
+                                PERSON_PUBLISH(position_y, 3, person[3].y);
+
+                                PERSON_PUBLISH(position_x, 4, person[4].x);
+                                PERSON_PUBLISH(position_y, 4, person[4].y);
+                                
+
+                                if (this->target_count_sensor_ != nullptr) {
+                                    uint8_t target_count = 0;
+                                    for(int i=0; i<3; i++) {
+                                        if(received_data.person[i].x != 0) target_count++;
+                                    }
+
+                                    this->target_count_sensor_->publish_state(target_count);
+                                }
+#endif
+
+#ifdef USE_BINARY_SENSOR
+
+                                int32_t current_millis = millis();
+
+    #ifdef USE_NUMBER
+                                for (auto *presence_region : presence_regions) {
+                                    presence_region->check_target(person);
+                                }
+    #endif
+
+                                for(int i=0; i<5; i++) {
+                                    bool exiting=false;
+
+    #ifdef USE_NUMBER
+                                    for (auto *entry_point : entry_points) {
+                                        if(entry_point->check_point(person_before[i])) {
+                                            exiting = true;
+                                            break;
+                                        }
+                                    }
+    #endif
+
+                                    if(received_data.person[i].x) {
+                                        if(exiting) presence_millis[i] = 0;
+                                        else presence_millis[i] = current_millis + presence_timeout*1000;
+                                    }
+                                }
+
+                                bool target = (
+                                    (received_data.person[0].x || presence_millis[0] > current_millis) ||
+                                    (received_data.person[1].x || presence_millis[1] > current_millis) ||
+                                    (received_data.person[2].x || presence_millis[2] > current_millis) ||
+                                    (received_data.person[3].x || presence_millis[3] > current_millis) ||
+                                    (received_data.person[4].x || presence_millis[4] > current_millis)
+                                );
+
+                                if (this->target_binary_sensor_ != nullptr) {
+                                    this->target_binary_sensor_->publish_state(target);
+                                }
+
+#endif
 
 #ifdef USE_NUMBER
                             case GET_REGIONS:
@@ -150,84 +226,6 @@ void LD2461::set_region(uint8_t region) {
 
 // Private Methods //////////////////////////////////////////////////////////////
 
-void LD2461::report_position(void) {
-#ifdef USE_SENSOR
-    for(int i=0; i<5; i++) {
-        if(person[i].x != 0 && person[i].y != 0) {
-            person_before[i].x = person[i].x;
-            person_before[i].y = person[i].y;
-        }
-    }
-
-    PERSON_PUBLISH(position_x, 0, person[0].x);
-    PERSON_PUBLISH(position_y, 0, person[0].y);
-
-    PERSON_PUBLISH(position_x, 1, person[1].x);
-    PERSON_PUBLISH(position_y, 1, person[1].y);
-
-    PERSON_PUBLISH(position_x, 2, person[2].x);
-    PERSON_PUBLISH(position_y, 2, person[2].y);
-
-    PERSON_PUBLISH(position_x, 3, person[3].x);
-    PERSON_PUBLISH(position_y, 3, person[3].y);
-
-    PERSON_PUBLISH(position_x, 4, person[4].x);
-    PERSON_PUBLISH(position_y, 4, person[4].y);
-    
-
-    if (this->target_count_sensor_ != nullptr) {
-        uint8_t target_count = 0;
-        for(int i=0; i<3; i++) {
-            if(received_data.person[i].x != 0) target_count++;
-        }
-
-        this->target_count_sensor_->publish_state(target_count);
-    }
-#endif
-
-#ifdef USE_BINARY_SENSOR
-
-    int32_t current_millis = millis();
-
-#ifdef USE_NUMBER
-    for (auto *presence_region : presence_regions) {
-        presence_region->check_target(person);
-    }
-#endif
-
-    for(int i=0; i<5; i++) {
-        bool exiting=false;
-
-#ifdef USE_NUMBER
-        for (auto *entry_point : entry_points) {
-            if(entry_point->check_point(person_before[i])) {
-                exiting = true;
-                break;
-            }
-        }
-#endif
-
-        if(received_data.person[i].x) {
-            if(exiting) presence_millis[i] = 0;
-            else presence_millis[i] = current_millis + presence_timeout*1000;
-        }
-    }
-
-    bool target = (
-        (received_data.person[0].x || presence_millis[0] > current_millis) ||
-        (received_data.person[1].x || presence_millis[1] > current_millis) ||
-        (received_data.person[2].x || presence_millis[2] > current_millis) ||
-        (received_data.person[3].x || presence_millis[3] > current_millis) ||
-        (received_data.person[4].x || presence_millis[4] > current_millis)
-    );
-
-    if (this->target_binary_sensor_ != nullptr) {
-        this->target_binary_sensor_->publish_state(target);
-    }
-
-#endif
-}
-
 int16_t LD2461::transform(uint16_t data) {
     return (data>>15) == 1 ? -1 * (data&0x7FFF) : data&0x7FFF;
 }
@@ -266,8 +264,8 @@ void LD2461::send_command_(uint8_t command, const uint8_t *command_value, int co
 
     check_sum = lowbyte(check_sum);
 
-    this->write_byte(highbyte(len));
     this->write_byte(lowbyte(len));
+    this->write_byte(highbyte(len));
 
     this->write_byte(command);
 

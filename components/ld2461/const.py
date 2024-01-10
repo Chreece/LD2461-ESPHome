@@ -1,12 +1,8 @@
 # ld2461
 CONF_LD2461_ID = "ld2461_id"
-CONF_INVERT_X = "invert_x"
-CONF_INVERT_Y = "invert_y"
 
 # binary sensor
 CONF_HAS_TARGET = "has_target"
-CONF_HAS_MOVING_TARGET = "has_moving_target"
-CONF_HAS_STILL_TARGET = "has_still_target"
 CONF_PRESENCE = "presence"
 CONF_REGION_ID = "region_id"
 
@@ -14,8 +10,6 @@ CONF_REGION_ID = "region_id"
 CONF_TARGET_COUNT = "target_count"
 CONF_POSITION_X = "position_x"
 CONF_POSITION_Y = "position_y"
-CONF_SPEED = "speed"
-CONF_RESOLUTION ="resolution"
 
 #number
 CONF_ROTATE = "rotate"
@@ -31,10 +25,6 @@ CONF_Y = "y"
 
 # select
 CONF_REGIONS_TYPE = "regions_type"
-
-# switch
-CONF_SINGLE_TARGET = "single_target"
-CONF_BLUETOOTH = "bluetooth"
 
 # button
 CONF_FACTORY_RESET = "factory_reset"
