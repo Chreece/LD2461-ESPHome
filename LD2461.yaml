@@ -1,11 +1,11 @@
 esphome:
-  name: hlk-presence
-  friendly_name: hlk-presence
+  name: LD2461
+  friendly_name: HiLink LD2461 mmWave
 
 external_components:
   - source:
       type: git
-      url: https://github.com/Chreece/ESPHome-LD2461
+      url: https://github.com/Chreece/LD2461-ESPHome
       ref: master
     components: [ ld2461 ]
 
@@ -19,10 +19,10 @@ logger:
 # Enable Home Assistant API
 api:
   encryption:
-    key: "your-encryption-key"
+    key: !secret encryption_key
 
 ota:
-  password: "your-ota-password"
+  password: !secret ota_update
 
 wifi:
   ssid: !secret wifi_ssid
@@ -30,8 +30,8 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "your-sensor-hotspot"
-    password: "your-password"
+    ssid: $friendly_name
+    password: !secret ap_pass
 
 captive_portal:   
 
@@ -55,10 +55,6 @@ binary_sensor:
 - platform: ld2461
   has_target:
     name: Presence
-  has_moving_target:
-    name: Moving Target
-  has_still_target:
-    name: Still Target
   presence_regions:
     - name: "Custom Presence Region 0"
       region_id: presence_region_0
@@ -67,8 +63,8 @@ text_sensor:
   - platform: ld2461
     version:
       name: "FW"
-    mac_address:
-      name: "MAC address"
+    uid:
+      name: "UID"
 
 button:
   - platform: restart
@@ -78,13 +74,6 @@ button:
       name: "Factory reset"
     reboot:
       name: "Reboot"
-
-switch:
-  - platform: ld2461
-    single_target:
-      name: "Single target"
-    bluetooth:
-      name: "Bluetooth"
 
 number:
 - platform: ld2461
@@ -150,36 +139,32 @@ sensor:
       name: "P0X"  
 
     position_y:
-      name: "P0Y"  
-
-    speed:
-      name: "S0"  
-
-    resolution:
-      name: "R0"  
+      name: "P0Y"
 
   person_1:
     position_x:
       name: "P1X"  
 
     position_y:
-      name: "P1Y"  
-
-    speed:
-      name: "S1"  
-
-    resolution:
-      name: "R1"  
+      name: "P1Y"
 
   person_2:
     position_x:
       name: "P2X"  
 
     position_y:
-      name: "P2Y"  
+      name: "P2Y"
 
-    speed:
-      name: "S2"  
+  person_3:
+    position_x:
+      name: "P3X"  
 
-    resolution:
-      name: "R2"
+    position_y:
+      name: "P3Y"
+
+  person_4:
+    position_x:
+      name: "P4X"  
+
+    position_y:
+      name: "P4Y"
