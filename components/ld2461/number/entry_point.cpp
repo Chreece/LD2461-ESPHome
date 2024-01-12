@@ -1,7 +1,7 @@
 #include "entry_point.h"
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
 double ENTRY_POINT_RADIUS = 50;
 
@@ -12,5 +12,5 @@ bool EntryPoint::check_point(coordinates point) {
     return distance <= ENTRY_POINT_RADIUS;
 }
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome

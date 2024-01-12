@@ -4,7 +4,7 @@
 #include "../typedefs.h"
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
 // typedef coordinates;
 
@@ -18,5 +18,5 @@ class EntryPoint {
         const double x_, y_;
 };
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome

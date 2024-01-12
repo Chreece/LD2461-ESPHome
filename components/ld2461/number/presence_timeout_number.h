@@ -2,12 +2,12 @@
 
 #include "esphome/components/number/number.h"
 #include "esphome/core/preferences.h"
-#include "../ld2450.h"
+#include "../ld2461.h"
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
-class PresenceTimeoutNumber : public number::Number, public Component, public Parented<LD2450>{
+class PresenceTimeoutNumber : public number::Number, public Component, public Parented<LD2461>{
     public:
         void setup() override;
         void set_initial_value(float initial_value) { this->initial_value_ = initial_value; }
@@ -20,5 +20,5 @@ class PresenceTimeoutNumber : public number::Number, public Component, public Pa
         void control(float value) override;
 };
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome

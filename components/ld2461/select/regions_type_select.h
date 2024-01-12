@@ -1,12 +1,12 @@
 #pragma once
 
 #include "esphome/components/select/select.h"
-#include "../ld2450.h"
+#include "../ld2461.h"
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
-class RegionsType : public select::Select, public Parented<LD2450> {
+class RegionsType : public select::Select, public Parented<LD2461> {
     public:
         RegionsType() = default;
 
@@ -14,5 +14,5 @@ class RegionsType : public select::Select, public Parented<LD2450> {
         void control(const std::string &value) override;
 };
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome

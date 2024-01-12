@@ -9,18 +9,18 @@ from esphome.const import (
     CONF_INITIAL_VALUE,
     CONF_RESTORE_VALUE
 )
-from .. import LD2450, ld2450_ns
-from ..const import CONF_REGIONS_TYPE, CONF_LD2450_ID
+from .. import LD2461, ld2461_ns
+from ..const import CONF_REGIONS_TYPE, CONF_LD2461_ID
 
-BaudRateSelect = ld2450_ns.class_("BaudRateSelect",
+BaudRateSelect = ld2461_ns.class_("BaudRateSelect",
     select.Select,
     cg.Component,
-    cg.Parented.template(LD2450)
+    cg.Parented.template(LD2461)
 )
-RegionsType = ld2450_ns.class_("RegionsType", select.Select, cg.Parented.template(LD2450))
+RegionsType = ld2461_ns.class_("RegionsType", select.Select, cg.Parented.template(LD2461))
 
 CONFIG_SCHEMA = {
-    cv.GenerateID(CONF_LD2450_ID): cv.use_id(LD2450),
+    cv.GenerateID(CONF_LD2461_ID): cv.use_id(LD2461),
     cv.Optional(CONF_BAUD_RATE): select.select_schema(
         BaudRateSelect,
         entity_category=ENTITY_CATEGORY_CONFIG,
@@ -38,7 +38,7 @@ CONFIG_SCHEMA = {
 
 
 async def to_code(config):
-    ld2450 = await cg.get_variable(config[CONF_LD2450_ID])
+    ld2461 = await cg.get_variable(config[CONF_LD2461_ID])
     if baud_rate_config := config.get(CONF_BAUD_RATE):
         s = await select.new_select(
             baud_rate_config,
@@ -58,7 +58,7 @@ async def to_code(config):
         cg.add(s.set_initial_value(baud_rate_config[CONF_INITIAL_VALUE]))
         cg.add(s.set_restore_value(baud_rate_config[CONF_RESTORE_VALUE]))
 
-        hub = await cg.get_variable(config[CONF_LD2450_ID])
+        hub = await cg.get_variable(config[CONF_LD2461_ID])
         cg.add(s.set_parent(hub))
 
     if regions_type_config := config.get(CONF_REGIONS_TYPE):
@@ -71,5 +71,5 @@ async def to_code(config):
             ],
         )
 
-        await cg.register_parented(s, config[CONF_LD2450_ID])
-        cg.add(ld2450.set_regions_type_select(s))
+        await cg.register_parented(s, config[CONF_LD2461_ID])
+        cg.add(ld2461.set_regions_type_select(s))

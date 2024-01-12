@@ -1,7 +1,7 @@
 #include "presence_region.h"
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
 PresenceRegion::PresenceRegion(int16_t x_begin, int16_t y_begin, int16_t x_end, int16_t y_end)
     : x_begin_(x_begin), y_begin_(y_begin), x_end_(x_end), y_end_(y_end) {}
@@ -22,5 +22,5 @@ void PresenceRegion::check_target(coordinates target[3]) {
 #endif
 }
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome
