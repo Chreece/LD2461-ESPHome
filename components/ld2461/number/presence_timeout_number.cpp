@@ -1,7 +1,7 @@
 #include "presence_timeout_number.h"
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
 void PresenceTimeoutNumber::setup() {
     float value;
@@ -28,5 +28,5 @@ void PresenceTimeoutNumber::control(float value) {
     if (this->restore_value_) this->pref_.save(&value);
 }
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome

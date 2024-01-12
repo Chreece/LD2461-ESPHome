@@ -1,7 +1,7 @@
 #include "regions_type_select.h"
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
 enum RegionsTypeStructure : uint8_t {
   NOT_USED = 0,
@@ -20,5 +20,5 @@ void RegionsType::control(const std::string &value) {
   this->parent_->set_regions_type(REGIONS_TYPE_ENUM_TO_INT.at(value));
 }
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome

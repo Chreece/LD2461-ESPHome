@@ -9,7 +9,7 @@ from esphome.const import (
     ICON_MOTION_SENSOR,
     ICON_ACCOUNT,
 )
-from . import ld2461, ld2461_ns, PresenceRegion
+from . import LD2461, ld2461_ns, PresenceRegion
 from .const import (CONF_HAS_TARGET, CONF_HAS_MOVING_TARGET,
     CONF_HAS_STILL_TARGET, CONF_PRESENCE, CONF_REGION_ID,
     CONF_PRESENCE_REGIONS, CONF_ld2461_ID)

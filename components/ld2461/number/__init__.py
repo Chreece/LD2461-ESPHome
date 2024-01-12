@@ -20,37 +20,37 @@ from esphome.const import (
     UNIT_SECOND,
     CONF_UNIT_OF_MEASUREMENT
 )
-from .. import LD2450, ld2450_ns, PresenceRegion
+from .. import LD2461, ld2461_ns, PresenceRegion
 
 from ..const import (CONF_ROTATE, CONF_PRESENCE_TIMEOUT, CONF_PRESENCE_REGIONS,
     CONF_ENTRY_POINTS, CONF_X0, CONF_Y0, CONF_X1, CONF_Y1, CONF_X, CONF_Y,
-    CONF_LD2450_ID)
+    CONF_LD2461_ID)
 
 NUMBERS = [CONF_X0, CONF_Y0, CONF_X1, CONF_Y1]
 
-DEPENDENCIES = ["ld2450"]
+DEPENDENCIES = ["ld2461"]
 
-RotateNumber = ld2450_ns.class_(
+RotateNumber = ld2461_ns.class_(
     "RotateNumber",
     number.Number,
     cg.Component,
-    cg.Parented.template(LD2450)
+    cg.Parented.template(LD2461)
 )
-PresenceTimeoutNumber = ld2450_ns.class_(
+PresenceTimeoutNumber = ld2461_ns.class_(
     "PresenceTimeoutNumber",
     number.Number,
     cg.Component,
-    cg.Parented.template(LD2450)
+    cg.Parented.template(LD2461)
 )
-RegionNumber = ld2450_ns.class_(
+RegionNumber = ld2461_ns.class_(
     "RegionNumber",
     number.Number,
-    cg.Parented.template(LD2450)
+    cg.Parented.template(LD2461)
 )
-EntryPoint = ld2450_ns.class_("EntryPoint")
+EntryPoint = ld2461_ns.class_("EntryPoint")
 
 CONFIG_SCHEMA = cv.Schema({
-    cv.GenerateID(CONF_LD2450_ID): cv.use_id(LD2450),
+    cv.GenerateID(CONF_LD2461_ID): cv.use_id(LD2461),
     cv.Optional(CONF_ROTATE): number.NUMBER_SCHEMA.extend(
         {
             cv.GenerateID(): cv.declare_id(RotateNumber),
@@ -145,7 +145,7 @@ CONFIG_SCHEMA = CONFIG_SCHEMA.extend(
 
 
 async def to_code(config):
-    ld2450 = await cg.get_variable(config[CONF_LD2450_ID])
+    ld2461 = await cg.get_variable(config[CONF_LD2461_ID])
     if rotate_config := config.get(CONF_ROTATE):
         var = await number.new_number(
             rotate_config,
@@ -157,7 +157,7 @@ async def to_code(config):
         cg.add(var.set_initial_value(rotate_config[CONF_INITIAL_VALUE]))
         cg.add(var.set_restore_value(rotate_config[CONF_RESTORE_VALUE]))
 
-        hub = await cg.get_variable(config[CONF_LD2450_ID])
+        hub = await cg.get_variable(config[CONF_LD2461_ID])
         func = getattr(hub, f"set_rotate_number")
         cg.add(func(var))
         cg.add(var.set_parent(hub))
@@ -173,7 +173,7 @@ async def to_code(config):
         cg.add(var.set_initial_value(presence_timeout_config[CONF_INITIAL_VALUE]))
         cg.add(var.set_restore_value(presence_timeout_config[CONF_RESTORE_VALUE]))
 
-        hub = await cg.get_variable(config[CONF_LD2450_ID])
+        hub = await cg.get_variable(config[CONF_LD2461_ID])
         func = getattr(hub, f"set_presence_timeout_number")
         cg.add(func(var))
         cg.add(var.set_parent(hub))
@@ -185,7 +185,7 @@ async def to_code(config):
                 entry_point[CONF_X],
                 entry_point[CONF_Y]
             )
-            cg.add(ld2450.add_entry_point(n))
+            cg.add(ld2461.add_entry_point(n))
 
     if presence_regions := config.get(CONF_PRESENCE_REGIONS):
         for presence_region in presence_regions:
@@ -196,7 +196,7 @@ async def to_code(config):
                 presence_region[CONF_X1],
                 presence_region[CONF_Y1]
             )
-            cg.add(ld2450.add_presence_region(n))
+            cg.add(ld2461.add_presence_region(n))
 
     for x in range(3):
         if region_config := config.get(f"region_{x}"):
@@ -206,5 +206,5 @@ async def to_code(config):
                 await number.register_number(
                     n, coord_config, min_value=-1000, max_value=1000, step=1
                 )
-                await cg.register_parented(n, config[CONF_LD2450_ID])
-                cg.add(ld2450.set_region_number(x, i, n))
+                await cg.register_parented(n, config[CONF_LD2461_ID])
+                cg.add(ld2461.set_region_number(x, i, n))

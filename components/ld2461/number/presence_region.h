@@ -8,7 +8,7 @@
 #endif
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
 class PresenceRegion {
 #ifdef USE_BINARY_SENSOR
@@ -24,5 +24,5 @@ class PresenceRegion {
         const int16_t x_begin_, y_begin_, x_end_, y_end_;
 };
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome

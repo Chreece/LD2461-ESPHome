@@ -2,12 +2,12 @@
 
 #include "esphome/components/select/select.h"
 #include "esphome/core/preferences.h"
-#include "../ld2450.h"
+#include "../ld2461.h"
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
-class BaudRateSelect : public select::Select, public Component, public Parented<LD2450> {
+class BaudRateSelect : public select::Select, public Component, public Parented<LD2461> {
     public:
         void setup() override;
         void set_initial_value(std::string initial_value) { this->initial_value_ = initial_value; }
@@ -20,5 +20,5 @@ class BaudRateSelect : public select::Select, public Component, public Parented<
         void control(const std::string &value) override;
 };
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome

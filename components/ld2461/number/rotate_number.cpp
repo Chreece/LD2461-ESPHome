@@ -1,7 +1,7 @@
 #include "rotate_number.h"
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
 void RotateNumber::setup() {
     float value;
@@ -28,5 +28,5 @@ void RotateNumber::control(float value) {
     if (this->restore_value_) this->pref_.save(&value);
 }
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome

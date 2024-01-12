@@ -1,7 +1,7 @@
 #include "baud_rate_select.h"
 
 namespace esphome {
-namespace ld2450 {
+namespace ld2461 {
 
 enum BaudRateStructure : uint8_t {
   BAUD_RATE_9600 = 1,
@@ -49,5 +49,5 @@ void BaudRateSelect::control(const std::string &value) {
   if (this->restore_value_) this->pref_.save(&state);
 }
 
-}  // namespace ld2450
+}  // namespace ld2461
 }  // namespace esphome
