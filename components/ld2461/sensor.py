@@ -15,10 +15,10 @@ from esphome.const import (
     UNIT_SECOND,
     ICON_ACCOUNT
 )
-from . import LD2450
-from .const import CONF_LD2450_ID
+from . import LD2461
+from .const import CONF_LD2461_ID
 
-DEPENDENCIES = ["ld2450"]
+DEPENDENCIES = ["ld2461"]
 
 from .const import CONF_TARGET_COUNT, CONF_POSITION_X, CONF_POSITION_Y, CONF_SPEED, CONF_RESOLUTION
 
@@ -28,7 +28,7 @@ UNIT_MM = "mm"
 
 CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(CONF_LD2450_ID): cv.use_id(LD2450),
+        cv.GenerateID(CONF_LD2461_ID): cv.use_id(LD2461),
         cv.Optional(CONF_TARGET_COUNT): sensor.sensor_schema(
             accuracy_decimals=0,
             state_class=STATE_CLASS_MEASUREMENT,
@@ -72,7 +72,7 @@ CONFIG_SCHEMA = CONFIG_SCHEMA.extend(
 )
 
 async def to_code(config):
-    hub = await cg.get_variable(config[CONF_LD2450_ID])
+    hub = await cg.get_variable(config[CONF_LD2461_ID])
     for x in range(3):
         if person_config := config.get(f"person_{x}"):
             for sensor_type in SENSORS:
