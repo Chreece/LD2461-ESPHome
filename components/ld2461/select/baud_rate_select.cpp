@@ -4,20 +4,17 @@ namespace esphome {
 namespace ld2461 {
 
 enum BaudRateStructure : uint8_t {
-  BAUD_RATE_9600 = 1,
-  BAUD_RATE_19200 = 2,
-  BAUD_RATE_38400 = 3,
-  BAUD_RATE_57600 = 4,
-  BAUD_RATE_115200 = 5,
-  BAUD_RATE_230400 = 6,
-  BAUD_RATE_256000 = 7,
-  BAUD_RATE_460800 = 8
+  BAUD_RATE_9600 = 9600,
+  BAUD_RATE_19200 = 19200,
+  BAUD_RATE_38400 = 38400,
+  BAUD_RATE_57600 = 57600,
+  BAUD_RATE_115200 = 115200,
+  BAUD_RATE_256000 = 256000
 };
 
 static const std::map<std::string, uint8_t> BAUD_RATE_ENUM_TO_INT{
     {"9600", BAUD_RATE_9600},     {"19200", BAUD_RATE_19200},   {"38400", BAUD_RATE_38400},
-    {"57600", BAUD_RATE_57600},   {"115200", BAUD_RATE_115200}, {"230400", BAUD_RATE_230400},
-    {"256000", BAUD_RATE_256000}, {"460800", BAUD_RATE_460800}};
+    {"57600", BAUD_RATE_57600},   {"115200", BAUD_RATE_115200}, {"256000", BAUD_RATE_256000}};
 
 void BaudRateSelect::setup() {
     std::string value;
