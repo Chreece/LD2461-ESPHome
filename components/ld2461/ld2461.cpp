@@ -106,7 +106,7 @@ void LD2461::loop() {
 #endif
 
 #ifdef USE_BINARY_SENSOR
-
+                            {
                                 int32_t current_millis = millis();
 
     #ifdef USE_NUMBER
@@ -144,6 +144,7 @@ void LD2461::loop() {
                                 if (this->target_binary_sensor_ != nullptr) {
                                     this->target_binary_sensor_->publish_state(target);
                                 }
+                            }
 
 #endif
 
@@ -239,7 +240,7 @@ void LD2461::set_presence_timeout_number() {
 void LD2461::send_command_(uint8_t command, const uint8_t *command_value, int command_value_len) {
     this->write_array(FRAME_HEADER, 3);
 
-    const uuint8_t check_sum = command;
+    const u_int8_t check_sum = command;
     
     int len = 2;
     
