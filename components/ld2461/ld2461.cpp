@@ -98,7 +98,7 @@ void LD2461::loop() {
                                 if (this->target_count_sensor_ != nullptr) {
                                     uint8_t target_count = 0;
                                     for(int i=0; i<3; i++) {
-                                        if(received_data.person[i].x != 0) target_count++;
+                                        if(received_data.person[i].cx != 0) target_count++;
                                     }
 
                                     this->target_count_sensor_->publish_state(target_count);
@@ -127,18 +127,18 @@ void LD2461::loop() {
                                     }
     #endif
 
-                                    if(received_data.person[i].x) {
+                                    if(received_data.person[i].cx) {
                                         if(exiting) presence_millis[i] = 0;
                                         else presence_millis[i] = current_millis + presence_timeout*1000;
                                     }
                                 }
 
                                 bool target = (
-                                    (received_data.person[0].x || presence_millis[0] > current_millis) ||
-                                    (received_data.person[1].x || presence_millis[1] > current_millis) ||
-                                    (received_data.person[2].x || presence_millis[2] > current_millis) ||
-                                    (received_data.person[3].x || presence_millis[3] > current_millis) ||
-                                    (received_data.person[4].x || presence_millis[4] > current_millis)
+                                    (received_data.person[0].cx || presence_millis[0] > current_millis) ||
+                                    (received_data.person[1].cx || presence_millis[1] > current_millis) ||
+                                    (received_data.person[2].cx || presence_millis[2] > current_millis) ||
+                                    (received_data.person[3].cx || presence_millis[3] > current_millis) ||
+                                    (received_data.person[4].cx || presence_millis[4] > current_millis)
                                 );
 
                                 if (this->target_binary_sensor_ != nullptr) {
