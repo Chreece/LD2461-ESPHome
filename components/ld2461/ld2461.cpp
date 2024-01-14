@@ -187,15 +187,9 @@ void LD2461::restore_factory() {
     this->set_timeout(1000, [this]() { this->read_all_info(); });
 }
 
-void LD2461::reboot_and_read() {
-    this->reboot_();
-    this->set_timeout(1000, [this]() { this->read_all_info(); });
-}
-
 void LD2461::set_baud_rate(uint8_t state) {
     uint8_t cmd_value[2] = {state, 0x00};
     this->send_command_(SET_BAUDRATE, cmd_value, 2);
-    this->set_timeout(1000, [this]() { this->reboot_(); });
 }
 
 void LD2461::set_regions_type(uint8_t state) {
