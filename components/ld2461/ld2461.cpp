@@ -224,14 +224,6 @@ int16_t LD2461::transform(uint16_t data) {
     return (data>>15) == 1 ? -1 * (data&0x7FFF) : data&0x7FFF;
 }
 
-#ifdef USE_NUMBER
-void LD2461::set_rotate_number() {
-    if (this->rotate_number_ != nullptr && this->rotate_number_->has_state()) {
-        rotate_angle = this->rotate_number_->state;
-    }
-}
-#endif
-
 void LD2461::add_entry_point(EntryPoint *entry_point) { entry_points.emplace_back(entry_point); }
 
 void LD2461::add_presence_region(PresenceRegion *presence_region) { presence_regions.emplace_back(presence_region); }
