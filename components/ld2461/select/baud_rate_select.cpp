@@ -3,7 +3,7 @@
 namespace esphome {
 namespace ld2461 {
 
-enum BaudRateStructure : uint16_t {
+enum BaudRateStructure : uint32_t {
   BAUD_RATE_9600 = 9600,
   BAUD_RATE_19200 = 19200,
   BAUD_RATE_38400 = 38400,
