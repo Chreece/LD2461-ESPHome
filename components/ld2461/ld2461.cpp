@@ -31,7 +31,7 @@ void LD2461::update() {
 #endif
 }
 
-void LD2450::loop() {
+void LD2461::loop() {
     while (available()) {
         char c = read();
         serial_data.buffer[serial_data.size] = c;
