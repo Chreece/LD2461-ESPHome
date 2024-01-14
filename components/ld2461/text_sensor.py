@@ -24,7 +24,7 @@ CONFIG_SCHEMA = {
 }
 
 async def to_code(config):
-    LD2461 = await cg.get_variable(config[CONF_LD2461_ID])
+    ld2461 = await cg.get_variable(config[CONF_LD2461_ID])
     if version_config := config.get(CONF_VERSION):
         sens = await text_sensor.new_text_sensor(version_config)
         cg.add(LD2461.set_version_text_sensor(sens))
