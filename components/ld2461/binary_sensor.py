@@ -2,10 +2,8 @@ import esphome.codegen as cg
 from esphome.components import binary_sensor
 import esphome.config_validation as cv
 from esphome.const import (
-    DEVICE_CLASS_MOTION,
     DEVICE_CLASS_OCCUPANCY,
     DEVICE_CLASS_PRESENCE,
-    ENTITY_CATEGORY_DIAGNOSTIC,
     ICON_MOTION_SENSOR,
     ICON_ACCOUNT,
 )
@@ -20,14 +18,6 @@ CONFIG_SCHEMA = {
     cv.Optional(CONF_HAS_TARGET): binary_sensor.binary_sensor_schema(
         device_class=DEVICE_CLASS_OCCUPANCY,
         icon=ICON_ACCOUNT,
-    ),
-    cv.Optional(CONF_HAS_MOVING_TARGET): binary_sensor.binary_sensor_schema(
-        device_class=DEVICE_CLASS_MOTION,
-        icon=ICON_MOTION_SENSOR,
-    ),
-    cv.Optional(CONF_HAS_STILL_TARGET): binary_sensor.binary_sensor_schema(
-        device_class=DEVICE_CLASS_OCCUPANCY,
-        icon=ICON_MOTION_SENSOR,
     ),
     cv.Optional(CONF_PRESENCE_REGIONS): cv.ensure_list(
         binary_sensor.binary_sensor_schema(
