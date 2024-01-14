@@ -52,22 +52,10 @@ CONFIG_SCHEMA = CONFIG_SCHEMA.extend(
                     state_class=STATE_CLASS_MEASUREMENT,
                     icon=ICON_ACCELERATION_Y,
                     unit_of_measurement=UNIT_CENTIMETER
-                ),
-                cv.Optional(CONF_SPEED): sensor.sensor_schema(
-                    accuracy_decimals=0,
-                    state_class=STATE_CLASS_MEASUREMENT,
-                    icon=ICON_GAUGE,
-                    unit_of_measurement=UNIT_CENTIMETER + "/" + UNIT_SECOND
-                ),
-                cv.Optional(CONF_RESOLUTION): sensor.sensor_schema(
-                    accuracy_decimals=0,
-                    state_class=STATE_CLASS_MEASUREMENT,
-                    icon=ICON_RULER,
-                    unit_of_measurement=UNIT_MM
                 )
             }
         )
-        for x in range(3)
+        for x in range(5)
     }
 )
 
