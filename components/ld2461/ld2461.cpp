@@ -287,22 +287,10 @@ void LD2461::read_all_info() {
 
 }
 
-void LD2461::set_config_mode_(bool enable) {
-    uint8_t cmd = enable ? ENABLE_CONFIG : DISABLE_CONFIG;
-    uint8_t cmd_value[2] = {0x01, 0x00};
-    this->send_command_(cmd, enable ? cmd_value : nullptr, 2);
-}
-
 void LD2461::get_version_() { this->send_command_(READ_FIRMWARE, nullptr, 0); }
-
-void LD2461::get_uuid_() {
-    uint8_t cmd_value[2] = {0x01, 0x00};
-    this->send_command_(GET_MAC, cmd_value, 2);
-}
 
 void LD2461::get_regions_() { this->send_command_(GET_REGIONS, nullptr, 0); }
 
-void LD2461::reboot_() { this->send_command_(REBOOT, nullptr, 0); }
 }  // namespace ld2461
 }  // namespace esphome
 
