@@ -18,7 +18,7 @@ CONFIG_SCHEMA = {
     cv.Optional(CONF_VERSION): text_sensor.text_sensor_schema(
         entity_category=ENTITY_CATEGORY_DIAGNOSTIC, icon=ICON_CHIP
     ),
-    cv.Optional(CONF_MAC_ADDRESS): text_sensor.text_sensor_schema(
+    cv.Optional(CONF_UID): text_sensor.text_sensor_schema(
         entity_category=ENTITY_CATEGORY_DIAGNOSTIC, icon=ICON_BLUETOOTH
     ),
 }
@@ -28,6 +28,6 @@ async def to_code(config):
     if version_config := config.get(CONF_VERSION):
         sens = await text_sensor.new_text_sensor(version_config)
         cg.add(LD2461.set_version_text_sensor(sens))
-    if mac_address_config := config.get(CONF_MAC_ADDRESS):
+    if uid_config := config.get(CONF_UID):
         sens = await text_sensor.new_text_sensor(mac_address_config)
-        cg.add(LD2461.set_mac_text_sensor(sens))
+        cg.add(LD2461.set_uid_text_sensor(sens))
