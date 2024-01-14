@@ -61,7 +61,7 @@ CONFIG_SCHEMA = CONFIG_SCHEMA.extend(
 
 async def to_code(config):
     hub = await cg.get_variable(config[CONF_LD2461_ID])
-    for x in range(3):
+    for x in range(5):
         if person_config := config.get(f"person_{x}"):
             for sensor_type in SENSORS:
                 if sensor_config := person_config.get(sensor_type):
