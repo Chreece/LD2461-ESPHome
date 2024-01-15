@@ -246,7 +246,7 @@ void LD2461::send_command_(uint8_t command, const uint8_t *command_value, int co
     
     if (command_value != nullptr) {
         len += command_value_len;
-        check_sum += command_value;
+        check_sum += *command_value;
     }
 
     check_sum = lowbyte(check_sum);
