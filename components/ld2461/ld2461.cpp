@@ -262,7 +262,7 @@ void LD2461::send_command_(uint8_t command, const uint8_t *command_value, int co
         }
     }
 
-    this->write_array(check_sum);
+    this->write_array(&check_sum, 1);
     this->write_array(FRAME_END, 3);
 }
 
