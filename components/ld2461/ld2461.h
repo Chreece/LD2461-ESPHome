@@ -93,6 +93,7 @@ class LD2461 : public uart::UARTDevice, public PollingComponent {
     void restore_factory();
     void set_baud_rate(uint8_t state);
     void set_regions_type(uint8_t state);
+    void set_reporting_type(uint8_t state);
     void add_entry_point(EntryPoint *entry_point);
     void add_presence_region(PresenceRegion *presence_region);
 
