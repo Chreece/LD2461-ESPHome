@@ -101,7 +101,6 @@ class LD2461 : public uart::UARTDevice, public PollingComponent {
 #ifdef USE_NUMBER
     void set_region_number(int region, int coord, number::Number *n);
     void set_region(uint8_t region);
-    void set_rotate_number();
     void set_presence_timeout_number();
 #endif
 
