@@ -4,7 +4,7 @@ import esphome.config_validation as cv
 from esphome.const import (
     DEVICE_CLASS_RESTART,
     ENTITY_CATEGORY_DIAGNOSTIC,
-    ICON_RESTART_ALERT
+    ICON_RESTART_ALERT,
 )
 from .. import LD2461, ld2461_ns
 from ..const import CONF_FACTORY_RESET, CONF_REBOOT, CONF_LD2461_ID
