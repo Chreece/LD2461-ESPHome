@@ -77,6 +77,7 @@ void LD2461::loop() {
                                 
 #ifdef USE_SENSOR
                             case GET_COORDINATES:
+                                ESP_LOGD(TAG, "Coordinates received");
                                 for(int i=0; i<5; i++) {
                                     if(person[i].x != 0 && person[i].y != 0) {
                                         person_before[i].x = person[i].x;
