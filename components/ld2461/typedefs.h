@@ -7,7 +7,7 @@ typedef struct{
 
 typedef struct{
     uint8_t data_header[4];
-    person_struct person[3];
+    person_struct person[5];
     uint8_t data_end[2];
 }data_packet_struct;
 
