@@ -12,7 +12,6 @@ CONF_POSITION_X = "position_x"
 CONF_POSITION_Y = "position_y"
 
 #number
-CONF_ROTATE = "rotate"
 CONF_PRESENCE_TIMEOUT = "presence_timeout"
 CONF_PRESENCE_REGIONS = "presence_regions"
 CONF_ENTRY_POINTS = "entry_points"
