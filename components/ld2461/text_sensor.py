@@ -30,4 +30,4 @@ async def to_code(config):
         cg.add(ld2461.set_version_text_sensor(sens))
     if uid_config := config.get(CONF_UID):
         sens = await text_sensor.new_text_sensor(uid_config)
-        cg.add(ld2461.set_uid_text_sensor(sens))
+        cg.add(ld2461.set_uuid_text_sensor(sens))
