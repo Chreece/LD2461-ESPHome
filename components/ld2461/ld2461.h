@@ -77,7 +77,6 @@ class LD2461 : public uart::UARTDevice, public PollingComponent {
 
 #ifdef USE_BUTTON
   SUB_BUTTON(reset)
-  SUB_BUTTON(reboot)
 #endif
 
 #ifdef USE_SELECT
