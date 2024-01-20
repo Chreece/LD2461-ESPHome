@@ -22,6 +22,10 @@ typedef struct{
 } frame_start_struct;
 
 typedef struct {
+    uint8_t type;
+} reporting;
+
+typedef struct {
     int16_t X0;
     int16_t Y0;
     int16_t X1;
