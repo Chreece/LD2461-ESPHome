@@ -91,7 +91,6 @@ class LD2461 : public uart::UARTDevice, public PollingComponent {
     void update() override;
     void dump_config() override;
     void read_all_info();
-    void reboot_and_read();
     void restore_factory();
     void set_baud_rate(uint8_t state);
     void set_regions_type(uint8_t state);
@@ -142,7 +141,6 @@ class LD2461 : public uart::UARTDevice, public PollingComponent {
 #endif
 
     int16_t transform(uint16_t data);
-    void report_position(void);
 
     void send_command_(uint8_t command_str, const uint8_t *command_value, int command_value_len);
     void get_version_();
