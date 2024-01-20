@@ -110,8 +110,8 @@ class LD2461 : public uart::UARTDevice, public PollingComponent {
         SET_REGIONS = 0x04,
         DISABLE_REGIONS = 0x05,
         GET_REGIONS = 0x06,
-        GET_NUM_TARGETS = 0x07,
-        GET_COORDINATES = 0x08,
+        GET_COORDINATES = 0x07,
+        GET_NUM_TARGETS = 0x08,
         READ_FIRMWARE = 0x09,
         RESTORE_FACTORY = 0x0A,
         FH_LAST = 0xDD,
@@ -126,6 +126,7 @@ class LD2461 : public uart::UARTDevice, public PollingComponent {
     uint8_t response_buffer[256];
     data_packet_struct received_data;
     regions sensor_regions;
+    reporting sensor_reporting;
     std::string version_;
     std::string uuid_;
     coordinates person[3];

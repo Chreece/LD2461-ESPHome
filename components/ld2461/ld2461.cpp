@@ -204,6 +204,12 @@ void LD2461::set_regions_type(uint8_t state) {
     this->send_command_(SET_REGIONS, (uint8_t *)&sensor_regions, sensor_regions_size);
 }
 
+void LD2461::set_reporting_type(uint8_t state) {
+    uint8_t sensor_reporting_size = sizeof(sensor_reporting);
+    sensor_reporting.type = state;
+    this->send_command_(SET_REPORTING, (uint8_t *)&sensor_reporting, sensor_reporting_size);
+}
+
 #ifdef USE_NUMBER
 void LD2461::set_region_number(int region, int coord, number::Number *n) {
     this->region_numbers_[region][coord] = n;
