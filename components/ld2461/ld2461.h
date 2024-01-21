@@ -143,6 +143,7 @@ class LD2461 : public uart::UARTDevice, public PollingComponent {
 #endif
 
     int16_t transform(uint16_t data);
+    void report_position(void);
 
     void send_command_(uint8_t command_str, const uint8_t *command_value, int command_value_len);
     void get_version_();
