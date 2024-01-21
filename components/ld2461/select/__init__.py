@@ -10,7 +10,7 @@ from esphome.const import (
     CONF_RESTORE_VALUE
 )
 from .. import LD2461, ld2461_ns
-from ..const import CONF_REGIONS_TYPE, CONF_LD2461_ID
+from ..const import CONF_REGIONS_TYPE, CONF_LD2461_ID, CONF_REPORTING_VALUE
 
 BaudRateSelect = ld2461_ns.class_("BaudRateSelect",
     select.Select,
@@ -18,6 +18,7 @@ BaudRateSelect = ld2461_ns.class_("BaudRateSelect",
     cg.Parented.template(LD2461)
 )
 RegionsType = ld2461_ns.class_("RegionsType", select.Select, cg.Parented.template(LD2461))
+ReportingType = ld2461_ns.class_("ReportingType", select.Select, cg.Parented.template(LD2461))
 
 CONFIG_SCHEMA = {
     cv.GenerateID(CONF_LD2461_ID): cv.use_id(LD2461),
@@ -26,11 +27,16 @@ CONFIG_SCHEMA = {
         entity_category=ENTITY_CATEGORY_CONFIG,
         icon=ICON_THERMOMETER,
     ).extend({
-        cv.Optional(CONF_INITIAL_VALUE, default="256000"): cv.string,
+        cv.Optional(CONF_INITIAL_VALUE, default="9600"): cv.string,
         cv.Optional(CONF_RESTORE_VALUE, default=True): cv.boolean,
     }),
     cv.Optional(CONF_REGIONS_TYPE): select.select_schema(
         RegionsType,
+        entity_category=ENTITY_CATEGORY_CONFIG,
+        icon=ICON_NEW_BOX,
+    ),
+    cv.Optional(CONF_REPORTING_TYPE): select.select_schema(
+        ReportingType,
         entity_category=ENTITY_CATEGORY_CONFIG,
         icon=ICON_NEW_BOX,
     )
