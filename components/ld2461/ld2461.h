@@ -131,10 +131,10 @@ class LD2461 : public uart::UARTDevice, public PollingComponent {
     reporting sensor_reporting;
     std::string version_;
     std::string uuid_;
-    coordinates person[3];
-    coordinates person_before[3];
+    coordinates person[5];
+    coordinates person_before[5];
     float presence_timeout = 0.0;
-    int32_t presence_millis[3];
+    int32_t presence_millis[5];
     std::vector<EntryPoint *> entry_points;
     std::vector<PresenceRegion *> presence_regions;
 
