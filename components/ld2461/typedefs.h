@@ -10,7 +10,6 @@ typedef struct{
     uint8_t size_0;
     uint8_t size_1;
     uint8_t command;
-    uint8_t command_val;
     person_struct person[2];
     uint8_t check_sum;
     uint8_t frame_end[3];
