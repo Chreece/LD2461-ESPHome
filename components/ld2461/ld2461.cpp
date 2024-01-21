@@ -77,7 +77,6 @@ void LD2461::loop() {
                                 
 #ifdef USE_SENSOR
                             case GET_COORDINATES:
-                                ESP_LOGD(TAG, "Coordinates received");
                                 for(int i=0; i<5; i++) {
                                     if(person[i].x != 0 && person[i].y != 0) {
                                         person_before[i].x = person[i].x;
@@ -289,6 +288,8 @@ void LD2461::read_all_info() {
 void LD2461::get_version_() { this->send_command_(READ_FIRMWARE, nullptr, 0); }
 
 void LD2461::get_regions_() { this->send_command_(GET_REGIONS, nullptr, 0); }
+
+void LD2461::get_reporting_() { this->send_command_(GET_REPORTING, nullptr, 0); }
 
 }  // namespace ld2461
 }  // namespace esphome

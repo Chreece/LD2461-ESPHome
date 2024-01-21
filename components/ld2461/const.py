@@ -28,6 +28,7 @@ CONF_Y = "y"
 
 # select
 CONF_REGIONS_TYPE = "regions_type"
+CONF_REPORTING_TYPE = "reporting_type"
 
 # button
 CONF_FACTORY_RESET = "factory_reset"

@@ -82,6 +82,7 @@ class LD2461 : public uart::UARTDevice, public PollingComponent {
 #ifdef USE_SELECT
   SUB_SELECT(baud_rate)
   SUB_SELECT(regions_type)
+  SUB_SELECT(reporting_type)
 #endif
 
   public:
