@@ -1,14 +1,17 @@
 #pragma once
 
 typedef struct{
-    uint16_t cx;
-    uint16_t cy;
+    uint8_t cx;
+    uint8_t cy;
 }person_struct;
 
 typedef struct{
-    uint8_t data_header[4];
-    person_struct person[5];
-    uint8_t data_end[2];
+    uint8_t frame_header[3];
+    uint8_t size_0;
+    uint8_t size_1;
+    uint8_t command;
+    uint8_t command_val;
+    person_struct person[2];
 }data_packet_struct;
 
 typedef struct{
