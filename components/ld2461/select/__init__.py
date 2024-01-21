@@ -10,7 +10,7 @@ from esphome.const import (
     CONF_RESTORE_VALUE
 )
 from .. import LD2461, ld2461_ns
-from ..const import CONF_REGIONS_TYPE, CONF_LD2461_ID, CONF_REPORTING_VALUE
+from ..const import CONF_REGIONS_TYPE, CONF_LD2461_ID, CONF_REPORTING_TYPE
 
 BaudRateSelect = ld2461_ns.class_("BaudRateSelect",
     select.Select,
