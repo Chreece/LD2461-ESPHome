@@ -1,5 +1,5 @@
 esphome:
-  name: LD2461
+  name: ld2461-test
   friendly_name: HiLink LD2461 mmWave
 
 external_components:
@@ -8,6 +8,7 @@ external_components:
       url: https://github.com/Chreece/LD2461-ESPHome
       ref: main
     components: [ ld2461 ]
+    refresh: 1min
 
 esp32:
   board: wemos_d1_mini32
@@ -38,18 +39,16 @@ captive_portal:
 uart:
   id: uart_bus
   tx_pin: 
-    number: GPIO1
+    number: GPIO22
   rx_pin: 
-    number: GPIO3
-  baud_rate: 256000
+    number: GPIO21
+  baud_rate: 9600
   parity: NONE
   stop_bits: 1
 
 ld2461:
   uart_id: uart_bus
   update_interval: 1s
-  invert_y: false
-  invert_x: false
 
 binary_sensor:
 - platform: ld2461
@@ -72,15 +71,9 @@ button:
   - platform: ld2461
     factory_reset:
       name: "Factory reset"
-    reboot:
-      name: "Reboot"
 
 number:
 - platform: ld2461
-  rotate:
-    restore_value: true
-    initial_value: 0
-    name: "Rotate angle"
   presence_timeout:
     name: "Presence timeout"
   presence_regions:
@@ -128,6 +121,8 @@ select:
       name: "Baud rate"
     regions_type:
       name: "Regions type"
+    reporting_type:
+      name: "Reporting type"
 
 sensor:
 - platform: ld2461
