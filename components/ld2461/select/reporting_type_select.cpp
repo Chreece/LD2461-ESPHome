@@ -15,7 +15,7 @@ static const std::map<std::string, uint8_t> REPORTING_TYPE_ENUM_TO_INT{
     {"Both", BOTH}
 };
 
-void RegionsType::control(const std::string &value) {
+void ReportingType::control(const std::string &value) {
   this->publish_state(value);
   this->parent_->set_reporting_type(REPORTING_TYPE_ENUM_TO_INT.at(value));
 }
