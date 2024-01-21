@@ -73,12 +73,14 @@ void LD2461::loop() {
                                 break;
 #ifdef USE_SENSOR
                             case GET_COORDINATES:
-                                uint8_t de_size = sizeof(FRAME_END);
-                                uint8_t packet_size = sizeof(data_packet_struct);
+                                {
+                                    uint8_t de_size = sizeof(FRAME_END);
+                                    uint8_t packet_size = sizeof(data_packet_struct);
 
-                                if(serial_data.size >= packet_size && memcmp(serial_data.buffer+serial_data.size-de_size, FRAME_END, de_size) == 0) {
-                                    memcpy(&received_data, serial_data.buffer+serial_data.size-packet_size, packet_size);
-                                    serial_data.size = 0;
+                                    if(serial_data.size >= packet_size && memcmp(serial_data.buffer+serial_data.size-de_size, FRAME_END, de_size) == 0) {
+                                        memcpy(&received_data, serial_data.buffer+serial_data.size-packet_size, packet_size);
+                                        serial_data.size = 0;
+                                    }
                                 }
                                 break;
 #endif
