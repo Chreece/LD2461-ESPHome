@@ -162,7 +162,7 @@ void LD2461::set_region(uint8_t region) {
 
 // Private Methods //////////////////////////////////////////////////////////////
 
-void LD2450::report_position(void) {
+void LD2461::report_position(void) {
 
 #ifdef USE_SENSOR
     for(int i=0; i<5; i++) {
