@@ -59,7 +59,11 @@ void LD2461::loop() {
                         if(response_frame_header.command == GET_REGIONS) {
                             uint8_t sensor_regions_size = sizeof(sensor_regions);
                             memcpy(&sensor_regions, serial_data.buffer+serial_data.frame_start+frame_size, sensor_regions_size);
-                        } else {
+                        } else if(response_frame_header.command == GET_COORDINATES){
+                            uint8_t packet_size = sizeof(data_packet_struct); 
+                            memcpy(&received_data, serial_data.buffer+serial_data.size-packet_size, packet_size);
+                        }
+                          else {
                             memcpy(response_buffer, serial_data.buffer+serial_data.frame_start+frame_size, response_frame_header.size_0);
                         }
 
@@ -71,19 +75,6 @@ void LD2461::loop() {
                                 this->uuid_ = str_snprintf("%02x%02x%02x%02x", 17, response_buffer[4], 
                                     response_buffer[5], response_buffer[6], response_buffer[7]).c_str();
                                 break;
-#ifdef USE_SENSOR
-                            case GET_COORDINATES:
-                                {
-                                    uint8_t de_size = sizeof(FRAME_END);
-                                    uint8_t packet_size = sizeof(data_packet_struct);
-
-                                    if(serial_data.size >= packet_size && memcmp(serial_data.buffer+serial_data.size-de_size, FRAME_END, de_size) == 0) {
-                                        memcpy(&received_data, serial_data.buffer+serial_data.size-packet_size, packet_size);
-                                        serial_data.size = 0;
-                                    }
-                                }
-                                break;
-#endif
 
 #ifdef USE_NUMBER
                             case GET_REGIONS:
