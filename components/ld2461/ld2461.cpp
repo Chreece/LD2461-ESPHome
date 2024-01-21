@@ -46,11 +46,6 @@ void LD2461::loop() {
                 break;
             }
             case FE_LAST: {
-                for(int i=0; i<serial_data.size; i++) {
-                    if(i==0){ESP_LOGD(TAG, "Data end received:");}
-                    ESP_LOGD(TAG, "%02x", serial_data.buffer[i]);
-                }
-
                 uint8_t fe_size = sizeof(FRAME_END);
                 uint8_t min_packet_size = sizeof(FRAME_HEADER) + fe_size + 5;
 
