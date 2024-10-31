@@ -39,7 +39,7 @@ typedef struct {
 typedef struct {
     uint8_t type;
     uint8_t reserved;
-    region coordinates[5];
+    region coordinates[3];
 } regions;
 
 typedef struct{
