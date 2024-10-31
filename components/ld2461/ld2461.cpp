@@ -183,7 +183,7 @@ void LD2461::report_position(void) {
 
     if (this->target_count_sensor_ != nullptr) {
         uint8_t target_count = 0;
-        for(int i=0; i<3; i++) {
+        for(int i=0; i<5; i++) {
             if(received_data.person[i].cx != 0) target_count++;
         }
 
