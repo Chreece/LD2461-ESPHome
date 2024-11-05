@@ -10,7 +10,7 @@ typedef struct{
     uint8_t size_0;
     uint8_t size_1;
     uint8_t command;
-    person_struct person[2];
+    person_struct person[5];
     uint8_t check_sum;
     uint8_t frame_end[3];
 }data_packet_struct;
@@ -21,8 +21,8 @@ typedef struct{
     uint8_t size_1;
     uint8_t command;
     uint8_t command_val;
-    uint8_t reserved_0;
-    uint8_t reserved_1;
+    uint8_t check_sum;
+    uint8_t frame_end[3];
 } frame_start_struct;
 
 typedef struct {
@@ -39,7 +39,7 @@ typedef struct {
 typedef struct {
     uint8_t type;
     uint8_t reserved;
-    region coordinates[3];
+    region coordinates[5];
 } regions;
 
 typedef struct{

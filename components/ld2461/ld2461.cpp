@@ -264,8 +264,8 @@ void LD2461::send_command_(uint8_t command, const uint8_t *command_value, int co
 
     check_sum = lowbyte(check_sum);
 
-    this->write_byte(lowbyte(len));
     this->write_byte(highbyte(len));
+    this->write_byte(lowbyte(len));
 
     this->write_byte(command);
 
@@ -281,6 +281,7 @@ void LD2461::send_command_(uint8_t command, const uint8_t *command_value, int co
 
 void LD2461::read_all_info() {
     this->get_version_();
+    this->get_reporting_();
 #ifdef USE_SELECT
     this->get_regions_();
 #endif
