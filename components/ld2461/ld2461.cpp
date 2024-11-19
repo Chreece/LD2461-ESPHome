@@ -70,7 +70,7 @@ void LD2461::loop() {
                         switch(response_frame_header.command) {
 
                             case READ_FIRMWARE:
-                                this->version_ = str_snprintf("V%u.%02X.%02X %02X/%02X", 17, response_buffer[2], 
+                                this->version_ = str_snprintf("V%u.%02X.%02X%02X/%02X", 17, response_buffer[2], 
                                     response_buffer[3], response_buffer[1], response_buffer[0]).c_str();
                                 this->uuid_ = str_snprintf("%02x%02x%02x%02x", 17, response_buffer[4], 
                                     response_buffer[5], response_buffer[6], response_buffer[7]).c_str();
