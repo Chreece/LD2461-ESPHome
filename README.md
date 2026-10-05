@@ -7,8 +7,6 @@
 
 # LD2461-ESPHome
 
-💙 **Enjoying this hobby project? [Send a voluntary thank-you via Ko-fi](https://ko-fi.com/chreece).**
-
  ESPHome for HiLink LD-2461 mmWave sensor
 
  UNDER DEVELOPMENT
